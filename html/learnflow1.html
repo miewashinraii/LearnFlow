@@ -5,55 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ulearn | LearnFlow</title>
     <link rel="stylesheet" href="../assets/css/lf1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-    <nav>
-        <div class="logo">
-            <img src="../assets/images/ulearn_logo.png" width="300px">
-        </div>
-        <ul>
-            <li><a href="#Home">Home</a></li>
-            <li><a href="/login">Dashboard</a></li>
-            <li><a href="#MyCourses">My Courses</a></li>
-            <li><a href="#LearnFlow">LearnFlow</a></li>
-        </ul>
-    </nav>
-
-        <main>
-          <div class="container">
-            <div class="navbar">
-              <div class="navbar-item">
-                <i class="fa fa-tachometer"></i>
-                <span>Dashboard</span>
-              </div>
-              <div class="navbar-item">
-                <i class="fa fa-robot"></i>
-                <span>AI Tutor</span>
-              </div>
-              <div class="navbar-item">
-                <i class="fa fa-book"></i>
-                <span>Study Plans</span>
-              </div>
-              <div class="navbar-item">
-                <i class="fa fa-calculator"></i>
-                <span>Practice Problem Generator</span>
-              </div>
-              <div class="navbar-item">
-                <i class="fa fa-chart-line"></i>
-                <span>Statistics</span>
-              </div>
-              <div class="navbar-item">
-                <i class="fa fa-cog"></i>
-                <span>Settings</span>
-              </div>
-              <div class="navbar-item">
-                <i class="fa fa-sign-out-alt"></i>
-                <span>Log out</span>
-              </div>
-            </div>
+      <nav>
+          <div class="logo">
+              <img src="../assets/images/ulearn_logo.png" width="300px">
           </div>
+          <ul>
+              <li><a href="#Home">Home</a></li>
+              <li><a href="/login">Dashboard</a></li>
+              <li><a href="#MyCourses">My Courses</a></li>
+              <li><a href="#LearnFlow" class="active-link">LearnFlow</a></li>
+          </ul>
+      </nav>
 
-        </main>
-    </div>
+          <main>
+              <div class="container">
+              <div class="navbar">
+                <button onclick="change_text('dashboard')" class="navbar-item" id="dashboard">
+                  <i class="fas fa-tachometer-alt"></i>
+                  <span>Dashboard</span>
+                </button>
+                <button onclick="change_text('ai-tutor')" class="navbar-item" id="ai-tutor">
+                  <i class="fa fa-robot"></i>
+                  <span>AI Tutor</span>
+                </button>
+                <button onclick="change_text('study-plans')" class="navbar-item" id="study-plans">
+                  <i class="fa fa-book"></i>
+                  <span>Study Plans</span>
+                </button>
+                <button onclick="change_text('practice-generator')" class="navbar-item" id="practice-generator">
+                  <i class="fa fa-calculator"></i>
+                  <span>Practice Problem Generator</span>
+                </button>
+                <button onclick="change_text()" class="navbar-item" id="statistics">
+                  <i class="fa fa-chart-line"></i>
+                  <span>Statistics</span>
+                </button>
+                <button onclick="change_text()" class="navbar-item" id="settings">
+                  <i class="fa fa-cog"></i>
+                  <span>Settings</span>
+                </button>
+                <button onclick="change_text()" class="navbar-item" id="log-out">
+                  <i class="fa fa-sign-out-alt"></i>
+                  <span>Log out</span>
+                </button>
+              </div>
+                <div class="main-content" id="main-content" style="padding: 30px;"> </div> 
+            </div>
+
+          </main>
+      </div>
+      <script type="text/javascript">
+
+        function change_text(id) {
+            var mainContent = document.getElementById("main-content");
+            switch (id) {
+                case 'dashboard':
+                    mainContent.innerHTML = `
+                    <img style src="../assets/images/ulearn_logo.png" alt="Dashboard Image">
+                    <p style="font-size: 20px">This is the Dashboard section.</p>
+                `;
+                    break;
+                case 'ai-tutor':
+                    mainContent.innerHTML = `
+                    <i class="fa fa-robot"></i>
+                    <p style="font-size: 20px" "color: #620053">Site is under construction.</p>
+                `;
+                    break;
+                default:
+                    mainContent.innerHTML = "Welcome to LearnFlow!";
+            }
+          }
+      </script>
+      // <!-- <script src="../assets/js/lfmain.js"></script> -->
 </body>
 </html>
