@@ -96,6 +96,9 @@ transition: background-color 0.3s ease;
 margin-right: 13px;
 }
 
+.navbar-item.active {
+    background-color: #1a002e80;
+}
 .nav-item.active {
     background-color: #555;
 }

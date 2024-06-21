@@ -23,7 +23,7 @@
           <main>
               <div class="container">
               <div class="navbar">
-                <button onclick="change_text('dashboard')" class="navbar-item" id="dashboard">
+                <button onclick="change_text('dashboard')"  class="navbar-item" id="dashboard">
                   <i class="fas fa-tachometer-alt"></i>
                   <span>Dashboard</span>
                 </button>
@@ -59,12 +59,29 @@
       </div>
       <script type="text/javascript">
 
+        window.onload = function() {
+          change_text('dashboard');
+        };
+
         function change_text(id) {
             var mainContent = document.getElementById("main-content");
+            var navbarItems = document.querySelectorAll(".navbar-item");
+
+              // Remove active class from all navbar items
+              navbarItems.forEach(function(item) {
+                item.classList.remove("active");
+              });
+
+              // Add active class to the selected navbar item
+              var selectedItem = document.getElementById(id);
+              if (selectedItem) {
+                selectedItem.classList.add("active");
+              }
+
             switch (id) {
                 case 'dashboard':
                     mainContent.innerHTML = `
-                    <img style src="../assets/images/ulearn_logo.png" alt="Dashboard Image">
+                    <img style src="../assets/images/ulearn_logo.png" alt="Dashboard Image" >
                     <p style="font-size: 20px">This is the Dashboard section.</p>
                 `;
                     break;

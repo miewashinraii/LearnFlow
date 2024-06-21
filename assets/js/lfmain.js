@@ -48,43 +48,43 @@
 // });
 
 // Get all the navigation links
-const navLinks = document.querySelectorAll('navbar-item');
-const learnFlowContent = document.getElementById('main-content');
+// const navLinks = document.querySelectorAll('navbar-item');
+// const learnFlowContent = document.getElementById('main-content');
 
-// Add click event listeners to the navigation links
-navLinks.forEach((link) => {
-  link.addEventListener('click', (event) => {
-    event.preventDefault();
-    const linkId = event.target.id;
+// // Add click event listeners to the navigation links
+// navLinks.forEach((link) => {
+//   link.addEventListener('click', (event) => {
+//     event.preventDefault();
+//     const linkId = event.target.id;
 
-    // Update the LearnFlow content and title based on the clicked link
-    updateLearnFlowContent(linkId);
-  });
-});
+//     // Update the LearnFlow content and title based on the clicked link
+//     updateLearnFlowContent(linkId);
+//   });
+// });
 
-function updateLearnFlowContent(linkId) {
-  // Clear the previous content
-  learnFlowContent.innerHTML = '';
+// function updateLearnFlowContent(linkId) {
+//   // Clear the previous content
+//   learnFlowContent.innerHTML = '';
 
-  // Update the LearnFlow title
-  learnFlowTitle.textContent = capitalizeFirstLetter(linkId.replace('-', ' '));
+//   // Update the LearnFlow title
+//   learnFlowTitle.textContent = capitalizeFirstLetter(linkId.replace('-', ' '));
 
-  // Dynamically generate the content based on the selected link
-  switch (linkId) {
-    case 'dashboard':
-      // Add content for the Dashboard
-      learnFlowContent.innerHTML = '<p>This is the Dashboard content.</p>';
-      break;
-    case 'ai-tutor':
-      // Add content for the AI Tutor
-      learnFlowContent.innerHTML = '<p>This is the AI Tutor content.</p>';
-      break;
-    // Add more cases for the other navigation links
-    default:
-      learnFlowContent.innerHTML = '<p>No content available for the selected item.</p>';
-  }
-}
+//   // Dynamically generate the content based on the selected link
+//   switch (linkId) {
+//     case 'dashboard':
+//       // Add content for the Dashboard
+//       learnFlowContent.innerHTML = '<p>This is the Dashboard content.</p>';
+//       break;
+//     case 'ai-tutor':
+//       // Add content for the AI Tutor
+//       learnFlowContent.innerHTML = '<p>This is the AI Tutor content.</p>';
+//       break;
+//     // Add more cases for the other navigation links
+//     default:
+//       learnFlowContent.innerHTML = '<p>No content available for the selected item.</p>';
+//   }
+// }
 
-function capitalizeFirstLetter(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
+// function capitalizeFirstLetter(str) {
+//   return str.charAt(0).toUpperCase() + str.slice(1);
+// }
