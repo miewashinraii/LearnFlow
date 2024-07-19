@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | ULearn</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/UTP-Symbol.ico') }}" type="image/x-icon"> 
+    <!-- <link rel="stylesheet" href="../static/css/dash.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dash.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+</head>
+<body>
+    <nav>
+        <ul>
+            <div class="logo">
+                <img src="../static/images/ulearn_logo.png" width="300px">
+            </div>
+            <li>
+                <a href="{{ url_for('login') }}">Home</a>
+            </li>
+            <li>
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            </li>
+            <li>
+                <a href="{{ url_for('mycourses') }}">My Courses</a>
+            </li>
+            <li>
+                <a href="{{ url_for('learnflow') }}">LearnFlow</a>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <div class="container">
+        <div class="course-navbar">
+          <button onclick="change_text('cs')"  class="cnavbar-item" id="cs">
+            <span>Course</span>
+          </button>
+          <button onclick="change_text('participant')" class="cnavbar-item" id="participant">
+            <span>Participant</span>
+          </button>
+          <button onclick="change_text('grades')" class="cnavbar-item" id="grades">                          
+            <span>Grades</span>
+          </button>
+          <button onclick="change_text('competencies')" class="cnavbar-item" id="competencies">
+            <span>Competencies</span>
+          </button>
+          <button onclick="change_text('more')" class="cnavbar-item" id="more">
+            <span>More</span>
+          </button>
+        </div>
+          <div class="cmain-content" id="cmain-content" style="padding: 30px;"> </div> 
+      </div>
+
+    </main>
+    <script type="text/javascript">
+        window.onload = function() {
+  change_text('cs');
+};
+
+function change_text(id) {
+    var mainContent = document.getElementById("cmain-content");
+    var navbarItems = document.querySelectorAll(".cnavbar-item");
+
+      // Remove active class from all navbar items
+      navbarItems.forEach(function(item) {
+        item.classList.remove("active");
+      });
+
+      // Add active class to the selected navbar item
+      var selectedItem = document.getElementById(id);
+      if (selectedItem) {
+        selectedItem.classList.add("active");
+      }
+
+    switch (id) {
+        case 'cs':
+            mainContent.innerHTML = `
+            <p style="font-size: 20px"><b>{{ course.name }}</b></p>
+        <div class="general-container">
+            <div class="tasks-container">
+                <h3>Tasks</h3>
+                <div class="task-item">
+                    <h4 class="task-link"><a href="{{ url_for('task1', course_code=course.code) }}"><i class="fa fa-clipboard"></i> Assignment 1</a></h4>
+                </div>
+            <button class="mark-as-done-btn">Mark as done</button>
+        </div>
+        `;
+            break;
+        case 'participant':
+            mainContent.innerHTML = `
+            <i class="fa fa-robot"></i>
+            <p style="font-size: 20px" "color: #620053">0Site is under construction.</p>
+        `;
+            break;
+        case 'grades':
+              mainContent.innerHTML = `
+              <i class="fa fa-robot"></i>
+              <p style="font-size: 20px" "color: #620053">1Site is under construction.</p>
+          `;
+            break;
+        case 'competencies':
+              mainContent.innerHTML = `
+              <i class="fa fa-robot"></i>
+              <p style="font-size: 20px" "color: #620053">2Site is under construction.</p>
+          `;
+            break;
+        case 'more':
+              mainContent.innerHTML = `
+              <i class="fa fa-robot"></i>
+              <p style="font-size: 20px" "color: #620053">3Site is under construction.</p>
+          `;
+            break;
+        default:
+            mainContent.innerHTML = "Welcome to LearnFlow!";
+    }
+  }
+    </script>
+</body>
+</html>

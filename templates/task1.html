@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | ULearn</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/UTP-Symbol.ico') }}" type="image/x-icon"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dash.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+</head>
+<body>
+    <nav>
+        <ul>
+            <div class="logo">
+                <img src="../static/images/ulearn_logo.png" width="300px">
+            </div>
+            <li>
+                <a href="{{ url_for('login') }}">Home</a>
+            </li>
+            <li>
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            </li>
+            <li>
+                <a href="{{ url_for('mycourses') }}">My Courses</a>
+            </li>
+            <li>
+                <a href="{{ url_for('learnflow', course_code=course.code) }}">LearnFlow</a>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <div class="container">
+        <div class="course-navbar">
+          <button onclick="change_text('cs')"  class="cnavbar-item" id="cs">
+            <span>Course</span>
+          </button>
+          <button onclick="change_text('participant')" class="cnavbar-item" id="participant">
+            <span>Participant</span>
+          </button>
+          <button onclick="change_text('grades')" class="cnavbar-item" id="grades">                          
+            <span>Grades</span>
+          </button>
+          <button onclick="change_text('competencies')" class="cnavbar-item" id="competencies">
+            <span>Competencies</span>
+          </button>
+          <button onclick="change_text('more')" class="cnavbar-item" id="more">
+            <span>More</span>
+          </button>
+        </div>
+          <div class="cmain-content" id="cmain-content" style="padding: 30px;"> 
+            <p style="font-size: 20px"><b>{{ course.name }}</b></p>
+                <p><b>Task 1:</b></p>
+                <p>{{ course.task1_title }}</p>
+                <p>{{ course.task1_desc }}</p>
+                <p>Due date: {{ course.task1_due }}</p>
+                <p>Progress: {{ course.task1_progress }}</p>
+                <button class="mark-as-done-btn">Mark as done</button>
+            </div>
+          </div> 
+      </div>
+
+    </main>
+</body>
+</html>

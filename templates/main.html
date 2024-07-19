@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ulearn | Log in</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/UTP-Symbol.ico') }}" type="image/x-icon">    <!-- <link rel="stylesheet" href="../static/css/login.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+
+</head>
+<body>
+    <!-- {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+          {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">{{ message }}</div>
+          {% endfor %}
+      {% endif %}
+    {% endwith %} -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="container p-2">
+          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+              {{ message }}
+          </div>
+          </div> 
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <div class="container">
+      <div class="login-container">
+        <div class="login-box">
+          <div class="login-form">
+            <div class="logo">
+              <img src="../static/images/ulearn_logo.png" width="90%" alt="UTP Logo">
+            </div>
+            <div id="timeout-message" class="hidden">
+              <h2>Your session has timed out. Please log in again.</h2>
+            </div>
+            <form name="/" action="{{ url_for('login') }}" method="post">
+                <input type="email" name="email" id="email" placeholder="Username or email" required/>
+                <input type="password" name="password" id="password" placeholder="Password" required/>
+                <button name="login" onclick="login()" class="login-btn" type="submit">Login</button>
+                <!-- <button class="login-btn" onclick="login()">Log in</button> -->
+                <a href="#" class="lost-password">Lost password?</a>
+              </div>
+              <div class="sign-in-options">
+                <h2>Sign in with</h2>
+                <button class="sign-in-btn" onclick="signInWithUTPID()">
+                  <img src="../static/images/Microsoft_Office_2016-Logo.png" width="50px" >Log in using your UTP ID</button>
+                <a href="#" class="guest-access" onclick="accessAsGuest()">Access as a guest</a>
+            </form>
+            <div class="cookies-notice">Cookies notice</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../static/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | ULearn</title>
+    <!-- <link rel="stylesheet" href="../static/css/dash.css"> -->
+    <link rel="icon" href="{{ url_for('static', filename='images/UTP-Symbol.ico') }}" type="image/x-icon"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dash.css') }}">
+
+</head>
+<body>
+    <nav>
+        <ul>
+            <div class="logo">
+                <img src="../static/images/ulearn_logo.png" width="300px">
+            </div>
+            <li>
+                <a href="{{ url_for('login') }}">Home</a>
+            </li>
+            <li>
+                <a href="#" onclick="redirectToCurrentPage()">Dashboard</a>
+            </li>
+            <li>
+                <a href="{{ url_for('mycourses') }}">My Courses</a>
+            </li>
+            <li>
+                <a href="{{ url_for('learnflow', course_code=course_code) }}">LearnFlow</a>
+            </li>
+        </ul>
+    </nav>
+    <form name="/dashboard" action="{{ url_for('dashboard') }}" method="post">
+      <section>
+        <h2>Welcome {{ session['name'] }}!</h2>
+        <div class="news-content">
+            <h2>General News & Announcements</h2>
+        <div class="cont-container">
+            <h2>2024-UL044: Engagement with Graduating Students Class of 2024</h2>
+            <p>by M Seraj Nizam B A Rahman - Tuesday, 2 July 2024, 11:08 AM</p>
+            <p>Greetings!!</p>
+            <p>Dear celebrated students,</p>
+            <p>Congratulations in advance on reaching the final milestone of your bachelor's degree. We are so proud of your achievement and would love to celebrate with you!.</p>
+            <p>In pursuance of that matter, our Deputy Vice-Chancellor Academic, Prof. Ir. Dr Hilmi Mukhtar, is honoured to celebrate your final milestone together in an Engagement with Deputy Vice-Chancellor Academic.</p>
+            <p>The details of the engagement are as below:</p>
+            <img src="../static/images/grad.png" alt="Engagement with Graduating Students Class of 2024">
+            <p>24 JULY 2024 | WEDNESDAY</p>
+            <p>2:30 PM to 5:00 PM</p>
+            <p>SEMINAR ROOM 4, 7 & 8, UNDERCROFT</p>
+            <p>MARCHING TOWARD GREATER HEIGHTS</p>
+            <p>(Edited by Zuraimee B Anor - original submission Tuesday, 2 July 2024, 11:08 AM)</p>
+            <p>(Edited by Zuraimee B Anor - original submission Tuesday, 2 July 2024, 11:08 AM)</p>
+            <p><a href="#">Permalink</a></p>
+            <p><a href="#">Discuss this topic (0 replies so far)</a></p>
+        </div>
+        </div>
+      </section>
+    </form>
+    <script src="../static/js/main.js"></script>
+</body>
+</html>

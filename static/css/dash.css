@@ -1,0 +1,221 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    padding-top: 60px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: auto;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    height: 60px; /* Set the height of the navbar */
+    
+}
+
+.logo img {
+    max-width: 250px;
+    padding-top: 33px;
+    padding-left: 13px;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 10px;
+    
+}
+
+nav ul li a {
+    color: #333333;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    padding: 10px 15px;
+    border-radius: 5px;
+    vertical-align: middle;
+    line-height: 100px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #375095;
+    color: #ffffff;
+}
+
+section{
+    margin: 20px;
+    padding: 20px;
+}
+
+.news-content {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 20;
+    background-color: #efeef1;
+    border: #efeef1;
+    border-radius: 10px;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.news-content h2 {
+    margin-left: 10px;
+    color: black;
+}
+
+.course-container{
+    /* display: flex;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 20;
+    background-color: #d4d3d3;
+    border-radius: 15px;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.1); */
+    display: flex;
+    /* grid-template-columns: repeat(3, 1fr);
+    grid-gap: 16px; */
+    justify-content: space-between;
+}
+.course-card{
+    /* width: calc(33.33% - 20px);
+    border: 1px solid #ccc;
+    background-color: #012169;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); */
+    flex: 1;
+    /* flex-direction: column; */
+    background-color: #012169;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.course-card h3 {
+    font-size: 10px;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.course-card p {
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+
+.course-card a.course-card-btn:hover,
+.course-card a.course-card-btn.active {
+    color: #ffffff;
+}
+
+.course-card a.course-card-btn:visited {
+    color: #ffffff;
+}
+.course-card .progress {
+    width: 100%;
+    height: 8px;
+    background-color: #eee;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.course-card .progress-bar {
+    height: 100%;
+    background-color: #4CAF50;
+}
+
+.course-card .info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.course-card .info i {
+    font-size: 1.2rem;
+    color: #4CAF50;
+}
+
+.course-navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #044478;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 60px; /* Adjust this value to change the spacing between the two navbars */
+    left: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 999;
+}
+
+.course-navbar .cnavbar-item {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 13px;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.course-navbar .cnavbar-item.active {
+    color: white;
+    font-weight: bold;
+}
+
+.course-navbar .cnavbar-item:hover {
+    color: #a8a3a3;
+}
+
+.cmain-content {
+    margin-top: 120px; /* Adjust this value to create more space for the content */
+}
+.news-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.news-content h2 {
+    padding: 10px;
+}
+.news-content p {
+    margin-left: 20px;
+}
+.news-content img {
+    margin-left: 100px;
+
+}
+.cont-container {
+    background-color: #e6e6e6;
+    color: #000000;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    border: 1px solid #ffffff;
+}

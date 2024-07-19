@@ -1,0 +1,488 @@
+[
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "g",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "url_for",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "session",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "flash",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "MySQL",
+        "importPath": "flask_mysqldb",
+        "description": "flask_mysqldb",
+        "isExtraImport": true,
+        "detail": "flask_mysqldb",
+        "documentation": {}
+    },
+    {
+        "label": "Mail",
+        "importPath": "flask_mail",
+        "description": "flask_mail",
+        "isExtraImport": true,
+        "detail": "flask_mail",
+        "documentation": {}
+    },
+    {
+        "label": "Message",
+        "importPath": "flask_mail",
+        "description": "flask_mail",
+        "isExtraImport": true,
+        "detail": "flask_mail",
+        "documentation": {}
+    },
+    {
+        "label": "MySQLdb.cursors",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "MySQLdb.cursors",
+        "description": "MySQLdb.cursors",
+        "detail": "MySQLdb.cursors",
+        "documentation": {}
+    },
+    {
+        "label": "MySQLdb.cursors,",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "MySQLdb.cursors.",
+        "description": "MySQLdb.cursors.",
+        "detail": "MySQLdb.cursors.",
+        "documentation": {}
+    },
+    {
+        "label": "pymysql",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pymysql",
+        "description": "pymysql",
+        "detail": "pymysql",
+        "documentation": {}
+    },
+    {
+        "label": "mysql.connector",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "mysql.connector",
+        "description": "mysql.connector",
+        "detail": "mysql.connector",
+        "documentation": {}
+    },
+    {
+        "label": "MySQLConnection",
+        "importPath": "mysql.connector",
+        "description": "mysql.connector",
+        "isExtraImport": true,
+        "detail": "mysql.connector",
+        "documentation": {}
+    },
+    {
+        "label": "Error",
+        "importPath": "mysql.connector",
+        "description": "mysql.connector",
+        "isExtraImport": true,
+        "detail": "mysql.connector",
+        "documentation": {}
+    },
+    {
+        "label": "DictCursor",
+        "importPath": "pymysql.cursors",
+        "description": "pymysql.cursors",
+        "isExtraImport": true,
+        "detail": "pymysql.cursors",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "smtplib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "smtplib",
+        "description": "smtplib",
+        "detail": "smtplib",
+        "documentation": {}
+    },
+    {
+        "label": "MIMEText",
+        "importPath": "email.mime.text",
+        "description": "email.mime.text",
+        "isExtraImport": true,
+        "detail": "email.mime.text",
+        "documentation": {}
+    },
+    {
+        "label": "Client",
+        "importPath": "twilio.rest",
+        "description": "twilio.rest",
+        "isExtraImport": true,
+        "detail": "twilio.rest",
+        "documentation": {}
+    },
+    {
+        "label": "TwilioRestException",
+        "importPath": "twilio.base.exceptions",
+        "description": "twilio.base.exceptions",
+        "isExtraImport": true,
+        "detail": "twilio.base.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "BackgroundScheduler",
+        "importPath": "apscheduler.schedulers.background",
+        "description": "apscheduler.schedulers.background",
+        "isExtraImport": true,
+        "detail": "apscheduler.schedulers.background",
+        "documentation": {}
+    },
+    {
+        "label": "CronTrigger",
+        "importPath": "apscheduler.triggers.cron",
+        "description": "apscheduler.triggers.cron",
+        "isExtraImport": true,
+        "detail": "apscheduler.triggers.cron",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "celery",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "celery",
+        "description": "celery",
+        "detail": "celery",
+        "documentation": {}
+    },
+    {
+        "label": "task",
+        "importPath": "celery",
+        "description": "celery",
+        "isExtraImport": true,
+        "detail": "celery",
+        "documentation": {}
+    },
+    {
+        "label": "crontab",
+        "importPath": "celery.schedules",
+        "description": "celery.schedules",
+        "isExtraImport": true,
+        "detail": "celery.schedules",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "login",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def login():\n# Output message if something goes wrong...\n    print(\"DAHH MASSUUUUUUKKKK niiiIII!@3\")\n    # Check if \"email\" and \"password\" POST requests exist (user submitted form)\n    # if request.method == 'POST' and 'email' in request.form and 'password' in request.form:\n    if request.method == 'POST':\n        # Create variables for easy access\n        email = request.form['email']\n        password = request.form['password']\n        print(\"dapat masuk db dah ni\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "dashboard",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def dashboard():\n        if 'email' in session and 'name' in session:\n            email = session['email']\n            name = session['name']\n            # Retrieve the details from the session\n            details = session.get('details')\n            # Check if details are available\n            if details:    \n                return render_template('./Ulearndash.html', email=email, name=name, details=details)\n            else:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "mycourses",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def mycourses():\n    if request.method == 'GET':\n        courses = []\n        if 'email' in session:\n            student_email = session['email']\n            try:\n                cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)\n                cursor.execute(\"SELECT c.name, c.code, c.faculty, c.semester, c.lecturer \"\n                              \"FROM courses c \"\n                              \"JOIN my_table mt ON c.student_id = mt.student_id \"",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "learnflow",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def learnflow():\n    if 'name' not in session:\n        return redirect(url_for('login'))\n    cursor = mysql.connection.cursor()\n    cursor.execute(\"SELECT phone, email FROM my_table WHERE name = %s\", (session['name'],))\n    user_info = cursor.fetchone()\n    has_phone = user_info[0] is not None\n    # Fetch the options for the code and name dropdowns\n    cursor.execute(\"SELECT code FROM courses\")\n    course_options = [row[0] for row in cursor.fetchall()]",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "send_email_notification",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def send_email_notification(recipient_email, subject, body):\n    msg = Message(\n        subject=subject,\n        recipients=[recipient_email]\n    )\n    msg.body = body\n    mail.send(msg)\n# def send_sms_notification(recipient_phone, message):\n#     print(\"INI NUMBER I\")\n#     print(recipient_phone)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "add_schedule",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def add_schedule():\n    course_code = request.form['course_code']\n    name = request.form['name']\n    title = request.form['title']\n    description = request.form['description']\n    due_date = request.form['due_date']\n    # Insert the new task into the database\n    conn = mysql.connection.cursor(MySQLdb.cursors.DictCursor)\n    cursor = conn.cursor()\n    cursor.execute(\"INSERT INTO tasks (student_id,course_code, name, title,description, due_date) VALUES (%s, %s, %s, %s, %s, %s)\", (session['student_id'], course_code, name, title, description, due_date))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "get_course_data",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def get_course_data(code):\n    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)\n    cursor.execute(\"SELECT code, name FROM courses\")\n    courses = cursor.fetchall()\n    course_codes = [course['code'] for course in courses]\n    course_names = [course['name'] for course in courses]\n    return course_codes, course_names\n@app.route('/update-task', methods=['POST'])\ndef update_task():\n    data = request.get_json()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "update_task",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def update_task():\n    data = request.get_json()\n    progress = data.get('progress')\n    task_id = data.get('taskId')\n    if not progress or not task_id:\n        return jsonify({'error': 'Missing required parameters'}), 400\n    try:\n        with mysql.connection.cursor() as cursor:\n            cursor.execute(\"SELECT id, title, name, code, description, due_date FROM tasks WHERE id = %s\", (task_id,))\n            task = cursor.fetchone()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "send_email_notification",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def send_email_notification(recipient_email, subject, body):\n    try:\n        msg = Message(subject, sender='amierah.honey@gmail.com', recipients=[recipient_email])\n        msg.body = body\n        mail.send(msg)\n        print(\"Email sent successfully!\")\n    except Exception as e:\n        print(\"Error sending email:\", e)\n@app.route('/save-schedule', methods=['POST'])\ndef save_schedule():",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "save_schedule",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def save_schedule():\n    # Get the form data from the request\n    course_code = request.json['courseCode']\n    course_name = request.json['courseName']\n    title = request.json['title']\n    description = request.json['description']\n    due_date_str = request.json['dueDate']\n    if due_date_str:\n        due_date = datetime.strptime(due_date_str, '%Y-%m-%d').date()\n        days_remaining = (due_date - datetime.now().date()).days",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "course_detail",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def course_detail(course_code):\n    # Fetch the details of the specific course\n    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)\n    cursor.execute(\"SELECT * FROM courses WHERE code = %s\", (course_code,))\n    course = cursor.fetchone()\n    print(\"here's the selected course\")\n    print(course)\n    if course:\n        return render_template('coursedash.html', course=course)\n    else:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "task1",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def task1():\n    # Fetch the details of the specific course\n    course_code = request.args.get('course_code')\n    if course_code:\n        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)\n        cursor.execute(\"SELECT * FROM courses WHERE code = %s\", (course_code,))\n        course = cursor.fetchone()\n        print(\"here's the selected course\")\n        print(course)\n        if course:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = Flask(__name__)\n# Change this to your secret key (can be anything, it's for extra protection)\napp.secret_key = '1a2b3c4d5e6d7g8h9i10'\n# Enter your database connection details below\napp.config['MYSQL_HOST'] = 'localhost'\napp.config['MYSQL_USER'] = 'root'\napp.config['MYSQL_PASSWORD'] = 'Miera@8310' #Replace ******* with  your database password.\napp.config['MYSQL_DB'] = 'my_database'\napp.config.update(\n    MAIL_SERVER='smtp.gmail.com',",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.secret_key",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.secret_key = '1a2b3c4d5e6d7g8h9i10'\n# Enter your database connection details below\napp.config['MYSQL_HOST'] = 'localhost'\napp.config['MYSQL_USER'] = 'root'\napp.config['MYSQL_PASSWORD'] = 'Miera@8310' #Replace ******* with  your database password.\napp.config['MYSQL_DB'] = 'my_database'\napp.config.update(\n    MAIL_SERVER='smtp.gmail.com',\n    MAIL_PORT=587,\n    MAIL_USE_TLS=True,",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['MYSQL_HOST']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['MYSQL_HOST'] = 'localhost'\napp.config['MYSQL_USER'] = 'root'\napp.config['MYSQL_PASSWORD'] = 'Miera@8310' #Replace ******* with  your database password.\napp.config['MYSQL_DB'] = 'my_database'\napp.config.update(\n    MAIL_SERVER='smtp.gmail.com',\n    MAIL_PORT=587,\n    MAIL_USE_TLS=True,\n    MAIL_USERNAME='amierah.honey@gmail.com',\n    MAIL_PASSWORD='zstg zndv gjye ckno',",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['MYSQL_USER']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['MYSQL_USER'] = 'root'\napp.config['MYSQL_PASSWORD'] = 'Miera@8310' #Replace ******* with  your database password.\napp.config['MYSQL_DB'] = 'my_database'\napp.config.update(\n    MAIL_SERVER='smtp.gmail.com',\n    MAIL_PORT=587,\n    MAIL_USE_TLS=True,\n    MAIL_USERNAME='amierah.honey@gmail.com',\n    MAIL_PASSWORD='zstg zndv gjye ckno',\n    MAIL_DEFAULT_SENDER='amierah.honey@gmail.com'",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['MYSQL_PASSWORD']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['MYSQL_PASSWORD'] = 'Miera@8310' #Replace ******* with  your database password.\napp.config['MYSQL_DB'] = 'my_database'\napp.config.update(\n    MAIL_SERVER='smtp.gmail.com',\n    MAIL_PORT=587,\n    MAIL_USE_TLS=True,\n    MAIL_USERNAME='amierah.honey@gmail.com',\n    MAIL_PASSWORD='zstg zndv gjye ckno',\n    MAIL_DEFAULT_SENDER='amierah.honey@gmail.com'\n)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['MYSQL_DB']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['MYSQL_DB'] = 'my_database'\napp.config.update(\n    MAIL_SERVER='smtp.gmail.com',\n    MAIL_PORT=587,\n    MAIL_USE_TLS=True,\n    MAIL_USERNAME='amierah.honey@gmail.com',\n    MAIL_PASSWORD='zstg zndv gjye ckno',\n    MAIL_DEFAULT_SENDER='amierah.honey@gmail.com'\n)\nmail = Mail(app)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "mail",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "mail = Mail(app)\n# Intialize MySQL\nmysql = MySQL(app)\n@app.route('/', methods=['GET', 'POST'])\ndef login():\n# Output message if something goes wrong...\n    print(\"DAHH MASSUUUUUUKKKK niiiIII!@3\")\n    # Check if \"email\" and \"password\" POST requests exist (user submitted form)\n    # if request.method == 'POST' and 'email' in request.form and 'password' in request.form:\n    if request.method == 'POST':",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "mysql",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "mysql = MySQL(app)\n@app.route('/', methods=['GET', 'POST'])\ndef login():\n# Output message if something goes wrong...\n    print(\"DAHH MASSUUUUUUKKKK niiiIII!@3\")\n    # Check if \"email\" and \"password\" POST requests exist (user submitted form)\n    # if request.method == 'POST' and 'email' in request.form and 'password' in request.form:\n    if request.method == 'POST':\n        # Create variables for easy access\n        email = request.form['email']",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "add",
+        "kind": 2,
+        "importPath": "tasks",
+        "description": "tasks",
+        "peekOfCode": "def add(x, y):\n    return x + y",
+        "detail": "tasks",
+        "documentation": {}
+    }
+]

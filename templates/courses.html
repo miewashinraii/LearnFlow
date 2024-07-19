@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | ULearn</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/UTP-Symbol.ico') }}" type="image/x-icon"> 
+    <!-- <link rel="stylesheet" href="../static/css/dash.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dash.css') }}">
+
+</head>
+<body>
+    <nav>
+        <ul>
+            <div class="logo">
+                <img src="../static/images/ulearn_logo.png" width="300px">
+            </div>
+            <li>
+                <a href="{{ url_for('login') }}">Home</a>
+            </li>
+            <li>
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+            </li>
+            <li>
+                <a href="#" class="active-link" onclick="redirectToCurrentPage()">My Courses</a>
+            </li>
+            <li>
+                <a href="{{ url_for('learnflow') }}">LearnFlow</a>
+            </li>
+        </ul>
+    </nav>
+      <section>
+        <h2><b>{{ session['name'] }} Courses!</b></h2>
+        <div class="course-container" ></div>
+            {% if courses %}
+                {% for course in courses %}
+                <div class="course-card">
+                    <a class="course-card-btn" href="{{ url_for('course_detail', course_code=course.code) }}">
+                        <h3>{{ course.faculty }}</h3>
+                        <p>{{ course.name }} - {{ course.semester }}</p>
+                    </a>
+                    <!-- <div class="progress">
+                        <div class="progress-bar" style="width:{{ course.progress }}%;"></div>
+                    </div> -->
+                    <!-- <div class="info">
+                        <span>{{ course.progress }}% complete</span>
+                        <a href="#">View Course</a>
+                    </div> -->
+                </div>
+                {% endfor %}
+            {% else %}
+                <p> No courses registered.</p>
+            {% endif %}
+        </div>
+      </section>
+    <script src="../static/js/main.js"></script>
+</body>
+</html>

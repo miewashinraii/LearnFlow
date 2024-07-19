@@ -15,7 +15,8 @@ background-color: #f1f1f1;
 position: relative;
 width: 100%;
 height: 100vh;
-background-image: url('../../assets/images/MainBig.jpg');
+background-image: url('../../static/images/MainBig.jpg');
+/* background-image: url("{{ url_for('static', filename='images/MainBig.jpg') }}"); */
 background-size: cover;
 background-position: center;
 background-repeat: no-repeat;

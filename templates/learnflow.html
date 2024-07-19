@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ulearn | LearnFlow</title>
+    <link rel="icon" class="logo-icon" href="{{ url_for('static', filename='images/UTP-Symbol.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lf1.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+      <nav>
+          <div class="logo">
+              <img src="../static/images/ulearn_logo.png" width="300px">
+          </div>
+          <ul>
+              <li><a href="{{ url_for('login') }}">Home</a></li>
+              <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+              <li><a href="{{ url_for('mycourses') }}">My Courses</a></li>
+              <li><a href="#" class="active-link " onclick="redirectToCurrentPage()">LearnFlow</a></li>
+          </ul>
+      </nav>
+
+          <main>
+              <div class="container">
+              <div class="navbar">
+                <button onclick="change_text('dashboard')"  class="navbar-item" id="dashboard">
+                  <i class="fas fa-tachometer-alt"></i>
+                  <span>Dashboard</span>
+                </button>
+                <button onclick="change_text('quiz-bot')" class="navbar-item" id="quiz-bot">
+                  <i class="fa fa-robot"></i>
+                  <span>Quiz Bot</span>
+                </button>
+                <button onclick="change_text('planner-board')" class="navbar-item" id="planner-board">
+                  <i class="fa fa-book"></i>                              
+                  <span>Planner Board</span>
+                </button>
+                <button onclick="change_text('cgpa-calc')" class="navbar-item" id="cgpa-calc">
+                  <i class="fa fa-calculator"></i>
+                  <span>CGPA Calculator</span>
+                </button>
+                <button onclick="change_text('your-progress')" class="navbar-item" id="your-progress">
+                  <i class="fa fa-chart-line"></i>
+                  <span>Your Progress</span>
+                </button>
+                <button onclick="change_text('settings')" class="navbar-item" id="settings">
+                  <i class="fa fa-cog"></i>
+                  <span>Settings</span>
+                </button>
+                <button class="navbar-item" id="gtulearn">
+                  <i class="fa fa-sign-out-alt"></i>
+                  <span>Go to Ulearn</span>
+                </button>
+              </div>
+                <div class="main-content" id="main-content" style="padding: 30px;"> </div> 
+            </div>
+
+          </main>
+      </div>
+      <script type="text/javascript">
+        document.getElementById('gtulearn').addEventListener('click', () => {
+          window.location.href = '/dashboard';
+        });
+        window.onload = function() {
+          change_text('dashboard');
+        };
+
+        function change_text(id) {
+            var mainContent = document.getElementById("main-content");
+            var navbarItems = document.querySelectorAll(".navbar-item");
+            var trackContainer = document.querySelector(".track-container");
+
+              // Remove active class from all navbar items
+              navbarItems.forEach(function(item) {
+                item.classList.remove("active");
+              });
+
+              // Add active class to the selected navbar item
+              var selectedItem = document.getElementById(id);
+              if (selectedItem) {
+                selectedItem.classList.add("active");
+              }
+
+            switch (id) {
+                case 'dashboard':
+                    // Check if user's phone number is stored in the database
+                   {% if not user_info or not user_info[0] %}
+                    mainContent.innerHTML = `
+                    <link rel="stylesheet" href="{{ url_for('static', filename='css/lf1.css') }}">
+                    <p style="font-size: 15.5px"><b>Welcome to LearnFlow, {{ session['name'] }}!</b></p>
+                    <div class="track-container">
+                      <p style="font-size: 13.5px"><b>Ready to Stay on Track ?</b></p>
+                      <p style="font-size: 13.5px">Enter your contact information to receive helpful notifications and reminders.</p>
+                      <form action="{{ url_for('learnflow') }}" method="POST" class="info-form">
+                          <div class="form-group">
+                              <label for="phone" style="font-size: 13.5px">Phone Number:</label>
+                              <input type="tel" id="phone" name="phone" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="email" style="font-size: 13.5px">Email:</label>
+                              <input type="email" name="email" value="{{ user_info[1] if user_info else '' }}" readonly>
+                          </div>
+                          <button type="submit" class="track-btn">Save</button>
+                      </form>
+                    </div>
+                `;
+                    trackContainer.style.display = "block";
+                    {% else %}
+                    mainContent.innerHTML = `
+                    <link rel="stylesheet" href="{{ url_for('static', filename='css/lf1.css') }}">
+                    <main>
+                      <p style="font-size: 23px"><b>Welcome to LearnFlow, {{ session['name'] }}!</b></p>
+                      <div class="date-time">
+                        <div class="date">
+                          <span id="current-date"></span>
+                        </div>
+                        <div class ="time">
+                          <span id="current-time"></span>
+                        </div>
+                      </div>
+                      <div class="syst">
+                        <h3>Tasks</h3>
+                        {% if tasks %}
+                        <div class="task-container">
+                          {% for task in tasks %}
+                          <div class="task-card " id="{{ task.id }}" onclick="change_text('update-task')">
+                            <div class="progress-circle">
+                            <div class="circle">
+                              <span class="percent">{{ task.progress }}%</span>
+                            </div>
+                            </div>
+                            <h3>{{ task.code }} - {{ task.name }}</h3>
+                            <h4>{{ task.title }}</h4>
+                              {% if task.days_remaining > 0 %}
+                                <p>{{ task.days_remaining }} days remaining</p>
+                              {% elif task.days_remaining == 0 %}
+                                <p>Due today</p>
+                              {% else %}
+                                <p>{{ -task.days_remaining }} days overdue</p>
+                              {% endif %}
+                            {% else %}
+                              <p>No days remaining information available</p>
+                          {% endfor %}
+                          </div>
+                        </div>
+                        {% else %}
+                        <p>No tasks found.</p>
+                        {% endif %}
+                      </div>
+                    </main>
+                    <div class="add-schedule-btn" onclick="change_text('add-new-schedule')">+ Add a new task</div>
+                   <!-- Modal template -->
+                    {% if tasks %}
+                      {% for task in tasks %}
+                      <div id="update-task-modal" class="cmodal">
+                      <form action="{{ url_for('learnflow') }}" id="update-task" method="POST" class="update-task">
+                        <div class="cmodal-content">
+                          <span class="cclose-button">&times;</span>
+                          <h2 id="t_h2">{{ task.code }} - {{ task.name }}</h2>
+                          <p id="t_title">{{ task.title }}</p>
+                          <label for="test" id="prog">Progress:</label>
+                          <select id="progress" name="progress" required>
+                            <option value="">Select progress</option>
+                            <option value="10">Just started</option>
+                            <option value="30">Gathering requirements</option>
+                            <option value="50">Developing</option>
+                            <option value="70">Almost complete</option>
+                            <option value="90">Finalizing</option>
+                            <option value="100">Completed</option>
+                          </select>
+                            <button id="update-task-btn" type="submit">Update Progress</button>
+                        </div>
+                      </form>
+                      </div>
+                      {% endfor %}
+                    {% endif %}
+                    <!-- Modal -->
+                    <div id="modal" class="modal">
+                      <div class="modal-content">
+                        <span class="close-button">&times;</span>
+                        <h2>Add a New Task</h2>
+                        <form action="{{ url_for('learnflow') }}" id="schedule-form" method="POST" class="schedule-form">
+                          <div class="sch-group">
+                            <label for="code">Course Code:</label>
+                            <select class="form-control" id="code" name="code">
+                              <option value="">Select a code</option>
+                              {% for option in course_options %}
+                              <option value="{{ option }}">{{ option }}</option>
+                              {% endfor %}
+                            </select>
+
+                            <label for="name">Course Name:</label>
+                            <select class="form-control" id="name" name="name">
+                                <option value="">Select a name</option>
+                                {% for option in name_options %}
+                                <option value="{{ option }}">{{ option }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="title">Title:</label>
+                            <input type="text" id="title" name="title" placeholder="Fill in task title" required>
+
+                            <label for="description">Description:</label>
+                            <textarea id="description" name="description" required></textarea>
+
+                            <label for="due-date">Due Date:</label>
+                            <input type="date" id="due_date" name="due_date" required>
+
+                            <button id="savesch" type="submit">Save</button>
+                          </div>
+                        </form> 
+                    </div>
+                `;
+
+                     // Update the current date
+                     function updateDateTime() {
+                      const currentDateTime = new Date();
+
+                      // Get the current date
+                      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                      const currentDate = currentDateTime.toLocaleDateString('en-US', options);
+
+                      // Get the current time
+                      const currentTime = currentDateTime.toLocaleTimeString();
+
+                      // Update the HTML elements
+                      document.getElementById('current-date').textContent = currentDate;
+                      document.getElementById('current-time').textContent = currentTime;
+                    }
+
+                    // Call the updateDateTime function every second to keep the time updated
+                    setInterval(updateDateTime, 1000);
+
+                    trackContainer.style.display = "none";
+                    {% endif %}
+                    break;
+                    case 'update-task':
+                      var tasks = {
+                        {% for task in tasks %}
+                        "{{ task.id }}": {
+                          "id": "{{ task.id }}",
+                          "name": "{{ task.name }}",
+                          "title": "{{ task.title }}",
+                          "description": "{{ task.description }}",
+                          "due_date": "{{ task.due_date }}",
+                          "progress": "{{ task.progress }}"
+                        },
+                        {% endfor %}
+                      };
+
+                      // Show the modal
+                      var modalTask = document.getElementById('update-task-modal');
+                      modalTask.style.display = "block";
+
+                      // Get the clicked task card
+                      var clickedTaskCard = event.target.closest('.task-card');
+                      var taskId = clickedTaskCard.getAttribute('data-id');
+
+                      // Fetch the task details from the tasks object
+                      var task = tasks[taskId];
+
+                      // Set the modal content based on the clicked task card
+                      modalTask.querySelector('.modal-title').textContent = task.title;
+                      modalTask.querySelector('.modal-progress').textContent = `${task.progress}% complete`;
+
+                      // Set up event listener for the Save button
+                      var updateButton = modalTask.querySelector("button[type='submit']");
+                      updateButton.addEventListener("click", function() {
+                        // Send a POST request to the server to save the new schedule
+                        fetch('/update-task/' + taskId, {
+                          method: 'POST',
+                          headers: {
+                            'Content-Type': 'application/json'
+                          },
+                          body: JSON.stringify({
+                            title: task.title,
+                            progress: task.progress
+                          })
+                        })
+                        .then(response => {
+                          if (response.ok) {
+                            // Close the modal and display a success message
+                            modalTask.style.display = "none";
+                            mainContent.innerHTML = "<p>Successfully updated!</p>";
+                          } else {
+                            // Display an error message
+                            mainContent.innerHTML = "<p>Error updating the task. Please try again.</p>";
+                          }
+                        })
+                        .catch(error => {
+                          // Display an error message
+                          mainContent.innerHTML = "<p>Error saving the task. Please try again.</p>";
+                        });
+                      });
+
+                      // Set up event listener for the Close button
+                      modalTask.addEventListener("click", function(event) {
+                        if (event.target.classList.contains('cclose-button')) {
+                          // Close the modal
+                          modalTask.style.display = "none";
+                        }
+                      });
+                      break;
+                case 'add-new-schedule':
+                    // Show the modal
+                    var modal = document.getElementById("modal");
+                    modal.style.display = "block";
+
+                    // Populate the dropdown options
+                    populateModalDropdown();
+                  
+                    // Set up event listener for the Save button
+                    var saveButton = document.querySelector(".modal-content button[type='submit']");
+                    saveButton.addEventListener("click", function() {
+                      // Get the form data
+                      var courseCode = document.getElementById("code").value;
+                      var courseName = document.getElementById("name").value;
+                      var title = document.getElementById("title").value;
+                      var description = document.getElementById("description").value;
+                      var dueDate = document.getElementById("due_date").value;
+
+                      // Send a POST request to the server to save the new schedule
+                      fetch('/save-schedule', {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                          courseCode: courseCode,
+                          courseName: courseName,
+                          title: title,
+                          description: description,
+                          dueDate: dueDate
+                        })
+                      })
+                      .then(function(response) {
+                        if (response.ok) {
+                          // Close the modal and display a success message
+                          modal.style.display = "none";
+                          mainContent.innerHTML = "<p>New schedule added successfully!</p>";
+                        } else {
+                          // Display an error message
+                          mainContent.innerHTML = "<p>Error saving the schedule. Please try again.</p>";
+                        }
+                      })
+                      .catch(function(error) {
+                        // Display an error message
+                        mainContent.innerHTML = "<p>Error saving the schedule. Please try again.</p>";
+                      });
+                    });
+
+                    // Set up event listener for the Close button
+                    var closeButton = document.querySelector(".close-button");
+                    closeButton.addEventListener("click", function() {
+                      modal.style.display = "none";
+                    });
+                    break;
+                    function populateModalDropdown() {
+                      fetch('/get_course_data')
+                      .then(response => response.json())
+                      .then(data => {
+                          const courseCodes = Object.keys(data);
+                          const courseNames = Object.values(data);
+
+                          const courseCodeSelect = document.getElementById('code');
+                          const courseNameSelect = document.getElementById('name');
+
+                          courseCodeSelect.innerHTML = '<option value="">Select course code</option>';
+                          courseNameSelect.innerHTML = '<option value="">Select course name</option>';
+
+                          courseCodes.forEach((code, index) => {
+                            const option = document.createElement('option');
+                            option.value = code;
+                            option.textContent = code;
+                            courseCodSelect.appendChild(option);
+
+                            const nameOption = document.createElement('option');
+                            nameOption.value = courseNames[index];
+                            nameOption.textContent = courseNames[index];
+                            courseNameSelect.appendChild(nameOption);
+                          });
+                        })
+                      .catch(error => {
+                          console.error('Error fetching course data:', error);
+                        });
+                    }
+                case 'quiz-bot':
+                    mainContent.innerHTML = `
+                    <i class="fa fa-robot"></i>
+                    <p style="font-size: 20px" "color: #620053">Site is under construction.</p>
+                `; 
+                    trackContainer.style.display = "none";
+                    break;
+                case 'your-progress':
+                    mainContent.innerHTML = `
+                    //  <h1>Student Progress Dashboard</h1>
+                    //   <div class="dashboard-container">
+                    //     <div class="dashboard-item">
+                    //       <h2>Overall Performance</h2>
+                    //       <div id="overallPerformanceChart" class="chart"></div>
+                    //     </div>
+                    //     <div class="dashboard-item">
+                    //       <h2>Subject-wise Performance</h2>
+                    //       <div id="subjectPerformanceChart" class="chart"></div>
+                    //     </div>
+                    //   </div>
+                    
+                `; 
+                    trackContainer.style.display = "none";
+                    break;
+                case 'settings':
+                    mainContent.innerHTML = `
+                    <div class="track-container">
+                      <p style="font-size: 13.5px"><b>Ready to Stay on Track ?</b></p>
+                      <p style="font-size: 13.5px">Enter your contact information to receive helpful notifications and reminders.</p>
+                      <form action="{{ url_for('learnflow') }}" method="POST" class="info-form">
+                          <div class="form-group">
+                              <label for="phone" style="font-size: 13.5px">Phone Number:</label>
+                              <input type="tel" id="phone" name="phone" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="email" style="font-size: 13.5px">Email:</label>
+                              <input type="email" name="email" value="{{ user_info[1] if user_info else '' }}" readonly>
+                          </div>
+                          <button type="submit" class="track-btn">Save</button>
+                      </form>
+                    </div>
+                `; 
+                    trackContainer.style.display = "none";
+                    break;
+                default:
+                    mainContent.innerHTML = `<i class="fa fa-robot"></i>
+                    <p style="font-size: 20px" "color: #620053">Site is under construction.</p> `;
+                    trackContainer.style.display = "none";
+            }
+          }
+      </script>
+      <!-- <script src="../static/js/lfmain.js"></script> -->
+</body>
+</html>
