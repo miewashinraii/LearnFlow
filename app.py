@@ -285,31 +285,6 @@ def send_email_notification(recipient_email, subject, body):
     mail.send(msg)
     print("Sent a daily notification")
 
-# def send_sms_notification(recipient_phone, message):
-#     print("INI NUMBER I")
-#     print(recipient_phone)
-#     try:
-#         account_sid = 'AC69ed5fb90250f9e959dd996a8a5b2838'
-#         auth_token = '5e73ce5e62feb5b9f5502c48cd379d84'
-#         client = Client(account_sid, auth_token)
-
-#         client.messages.create(
-#             body=message,
-#             from_='+16168187028',
-#             to=recipient_phone
-#         )
-#     except TwilioRestException as e:
-#         # Log the error and provide more information
-#         app.logger.error(f"Error sending SMS notification to {recipient_phone}: {e}")
-#         app.logger.error(f"Error details: {e.msg}")
-#         # You can also raise a custom exception or return an error message to the user
-#         raise Exception("Error sending SMS notification. Please try again later.")
-#     except Exception as e:
-#         # Log any other unexpected errors
-#         app.logger.error(f"Unexpected error sending SMS notification to {recipient_phone}: {e}")
-#         raise Exception("Error sending SMS notification. Please try again later.")
-
-
 
 @app.route('/add_schedule', methods=['POST'])
 def add_schedule():
