@@ -244,7 +244,7 @@ input {
     /* flex-direction: row; */
     /* flex: 1; */
     overflow-x: auto;
-    overflow-y: auto;
+    /* overflow-y: auto; */
     /* overflow-y: auto; */
     /* position: relative; */
 }
@@ -264,7 +264,7 @@ input {
     justify-content: space-between;
     font-size: 1rem;
     width: 600px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .task-card {
@@ -473,14 +473,32 @@ input {
 }
 
 .cmodal-content {
-    background-color: #502a60;
+    /* background-color: #502a60; */
+    background: linear-gradient(#3b1e47, #3b1e47) padding-box, linear-gradient(145deg, transparent 35%,#834989, #1e041f) border-box;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 60px;
     border-radius: 10px;
+    border: 2px solid transparent;
+    animation: gradient 3s ease infinite;
     width: 40%; /* Could be more or less, depending on screen size */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    background-size: 200% 100%;
+    
 } 
-  
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  } 
 .cclose-button {
     color: #aaa;
     float: right;
@@ -548,7 +566,9 @@ input {
     background-position: right 8px center;
     background-size: 24px;
   }
-
+  select[name="progress"] {
+    width: 200px;
+  }
 #update-task-btn {
     /* Adjust the background color */
     background-color: #1a011bf1;
@@ -570,6 +590,7 @@ input {
     /* Add a hover effect */
     &:hover {
         background-color: #27024c;
+        cursor: pointer;
     }
     
     /* Customize the appearance of the dropdown arrow */
@@ -620,6 +641,7 @@ input {
     /* Add a hover effect */
     &:hover {
         background-color: #27024c;
+        cursor: pointer;
     }
     
     /* Customize the appearance of the dropdown arrow */
@@ -630,4 +652,90 @@ input {
     background-repeat: no-repeat;
     background-position: right 8px center;
     background-size: 24px;
+  }
+  .task-bar {
+    fill: steelblue;
+    transition: fill 0.5s ease;
+  }
+  .task-bar:hover {
+    fill: crimson;
+  }
+  .axis-label {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .bar {
+    fill: #4CAF50; /* green color */
+  } 
+
+  ::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Color of the track (area behind the scrollbar) */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar thumb */
+    border-radius: 6px; /* Rounded corners of the scrollbar thumb */
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Color of the scrollbar thumb on hover */
+  }
+.message {
+  color: #000000;
+  font-size: 10px;
+}
+.message p {
+  white-space: nowrap;
+  padding: 30px;
+  width: 300px;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  margin-bottom: 15px;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+#motivation-button {
+    /* Adjust the background color */
+    background-color: #1a011bf1;
+
+    /* Customize the text color */
+    color: #ffffff;
+    
+    /* Add padding for better spacing */
+    padding: 8px 12px;
+    margin-top: 14px;
+    /* Modify the font size and family */
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    
+    /* Style the border */
+    border: none;
+    border-radius: 4px;
+    
+    /* Add a hover effect */
+    &:hover {
+        background-color: #27024c;
+        cursor: pointer;
+    }
+    
+    /* Customize the appearance of the dropdown arrow */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 24px;
+  }
+  .svg {
+    width: 100%;
+    height: 400px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #333;
   }

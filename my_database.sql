@@ -263,3 +263,36 @@ INSERT INTO courses (faculty, code, name, semester,lecturer, student_id, task1_t
 	('Faculty of Science and Information Technology', 'TFB2113', 'Technopreneurship Team Project', 'May 2024', 'Dr Misha', NULL, NULL, NULL, NULL, NULL ),
     ('Faculty of Science and Information Technology', 'TEB3413', 'Software Requirement Engineering', 'May 2024', 'Dr Ong', NULL, NULL, NULL, NULL, NULL ),
     ('Faculty of Science and Information Technology', 'TEB3423', 'Software Design and Architecture', 'May 2024', 'Dr Haris', NULL, NULL, NULL, NULL, NULL );
+    
+USE my_database;
+ALTER TABLE tasks
+ADD COLUMN notification_interval INT DEFAULT 1;
+
+ALTER TABLE tasks
+ADD COLUMN notification_sent INT DEFAULT 0;
+
+USE my_database;
+ALTER TABLE tasks
+DROP COLUMN notification_sent;
+
+USE my_database;
+ALTER TABLE tasks
+DROP COLUMN notification_interval;
+
+USE my_database;
+ALTER TABLE tasks
+ADD COLUMN test VARCHAR(255) DEFAULT null;
+
+USE my_database;
+INSERT INTO tasks (faculty, code, name, semester,lecturer, student_id, task1_title, task1_desc, task1_due, task1_prog ) VALUES
+    ('Faculty of Science and Information Technology', 'TFB1013', 'Structured Programming', 'May 2024', 'Dr Arif', NULL, NULL, NULL, NULL, NULL ),
+    
+ 
+USE my_database;   
+CREATE TABLE `reminder` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `task` int DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `status` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

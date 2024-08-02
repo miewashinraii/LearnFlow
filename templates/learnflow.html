@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ulearn | LearnFlow</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.11.0/dist/tf.min.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
     <link rel="icon" class="logo-icon" href="{{ url_for('static', filename='images/UTP-Symbol.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/lf1.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -24,27 +26,27 @@
           <main>
               <div class="container">
               <div class="navbar">
-                <button onclick="change_text('dashboard')"  class="navbar-item" id="dashboard">
+                <button onclick="change_text('dashboard', 0)"  class="navbar-item" id="dashboard">
                   <i class="fas fa-tachometer-alt"></i>
                   <span>Dashboard</span>
                 </button>
-                <button onclick="change_text('quiz-bot')" class="navbar-item" id="quiz-bot">
+                <button onclick="change_text('quiz-bot', 0)" class="navbar-item" id="quiz-bot">
                   <i class="fa fa-robot"></i>
                   <span>Quiz Bot</span>
                 </button>
-                <button onclick="change_text('planner-board')" class="navbar-item" id="planner-board">
+                <button onclick="change_text('planner-board', 0)" class="navbar-item" id="planner-board">
                   <i class="fa fa-book"></i>                              
                   <span>Planner Board</span>
                 </button>
-                <button onclick="change_text('cgpa-calc')" class="navbar-item" id="cgpa-calc">
+                <button onclick="change_text('cgpa-calc', 0)" class="navbar-item" id="cgpa-calc">
                   <i class="fa fa-calculator"></i>
                   <span>CGPA Calculator</span>
                 </button>
-                <button onclick="change_text('your-progress')" class="navbar-item" id="your-progress">
+                <button onclick="change_text('your-progress', 0)" class="navbar-item" id="your-progress">
                   <i class="fa fa-chart-line"></i>
                   <span>Your Progress</span>
                 </button>
-                <button onclick="change_text('settings')" class="navbar-item" id="settings">
+                <button onclick="change_text('settings', 0)" class="navbar-item" id="settings">
                   <i class="fa fa-cog"></i>
                   <span>Settings</span>
                 </button>
@@ -63,10 +65,12 @@
           window.location.href = '/dashboard';
         });
         window.onload = function() {
-          change_text('dashboard');
+          change_text('dashboard', 0);
         };
 
-        function change_text(id) {
+    
+              
+        function change_text(id, tid) {
             var mainContent = document.getElementById("main-content");
             var navbarItems = document.querySelectorAll(".navbar-item");
             var trackContainer = document.querySelector(".track-container");
@@ -81,6 +85,9 @@
               if (selectedItem) {
                 selectedItem.classList.add("active");
               }
+
+
+              
 
             switch (id) {
                 case 'dashboard':
@@ -110,58 +117,57 @@
                     mainContent.innerHTML = `
                     <link rel="stylesheet" href="{{ url_for('static', filename='css/lf1.css') }}">
                     <main>
-                      <p style="font-size: 23px"><b>Welcome to LearnFlow, {{ session['name'] }}!</b></p>
-                      <div class="date-time">
-                        <div class="date">
-                          <span id="current-date"></span>
-                        </div>
-                        <div class ="time">
-                          <span id="current-time"></span>
-                        </div>
-                      </div>
-                      <div class="syst">
-                        <h3>Tasks</h3>
-                        {% if tasks %}
-                        <div class="task-container">
-                          {% for task in tasks %}
-                          <div class="task-card " id="{{ task.id }}" onclick="change_text('update-task')">
-                            <div class="progress-circle">
-                            <div class="circle">
-                              <span class="percent">{{ task.progress }}%</span>
+                        <p style="font-size: 23px"><b>Welcome to LearnFlow, {{ session['name'] }}!</b></p>
+                        <div class="date-time">
+                            <div class="date">
+                                <span id="current-date"></span>
                             </div>
+                            <div class="time">
+                                <span id="current-time"></span>
                             </div>
-                            <h3>{{ task.code }} - {{ task.name }}</h3>
-                            <h4>{{ task.title }}</h4>
-                              {% if task.days_remaining > 0 %}
-                                <p>{{ task.days_remaining }} days remaining</p>
-                              {% elif task.days_remaining == 0 %}
-                                <p>Due today</p>
-                              {% else %}
-                                <p>{{ -task.days_remaining }} days overdue</p>
-                              {% endif %}
+                        </div>
+                        <div class="syst">
+                            <h3>Tasks</h3>
+                            {% if tasks %}
+                            <div class="task-container">
+                                {% for task in tasks %}
+                                            <div class="task-card " id="{{ task.id }}" onclick="change_text('update-task', {{ task.id }})">
+                                    <div class="progress-circle">
+                                        <div class="circle">
+                                            <span class="percent">{{ task.progress }}%</span>
+                                        </div>
+                                    </div>
+                                    <h3>{{ task.code }} - {{ task.name }}</h3>
+                                    <h4>{{ task.title }}</h4>
+                                    {% if task.days_remaining > 0 %}
+                                    <p>{{ task.days_remaining }} days remaining</p>
+                                    {% elif task.days_remaining == 0 %}
+                                    <p>Due today</p>
+                                    {% else %}
+                                    <p>{{ -task.days_remaining }} days overdue</p>
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                            </div>
                             {% else %}
-                              <p>No days remaining information available</p>
-                          {% endfor %}
-                          </div>
+                            <p>No tasks found.</p>
+                            {% endif %}
                         </div>
-                        {% else %}
-                        <p>No tasks found.</p>
-                        {% endif %}
-                      </div>
                     </main>
-                    <div class="add-schedule-btn" onclick="change_text('add-new-schedule')">+ Add a new task</div>
+                    <div class="add-schedule-btn" onclick="change_text('add-new-schedule', 0)">+ Add a new task</div>
                    <!-- Modal template -->
                     {% if tasks %}
                       {% for task in tasks %}
                       <div id="update-task-modal" class="cmodal">
-                      <form action="{{ url_for('learnflow') }}" id="update-task" method="POST" class="update-task">
+                      <form action="{{ url_for('update_task', task_id=task.id) }}" id="update-task" method="POST" class="update-task">
                         <div class="cmodal-content">
                           <span class="cclose-button">&times;</span>
+                          <input name="taskid" id="taskid" hidden>
                           <h2 id="t_h2">{{ task.code }} - {{ task.name }}</h2>
                           <p id="t_title">{{ task.title }}</p>
                           <label for="test" id="prog">Progress:</label>
                           <select id="progress" name="progress" required>
-                            <option value="">Select progress</option>
+                            <option value="" disabled selected>Select progress</option>
                             <option value="10">Just started</option>
                             <option value="30">Gathering requirements</option>
                             <option value="50">Developing</option>
@@ -231,7 +237,7 @@
                     // Call the updateDateTime function every second to keep the time updated
                     setInterval(updateDateTime, 1000);
 
-                    trackContainer.style.display = "none";
+                    // trackContainer.style.display = "none";
                     {% endif %}
                     break;
                     case 'update-task':
@@ -239,6 +245,7 @@
                         {% for task in tasks %}
                         "{{ task.id }}": {
                           "id": "{{ task.id }}",
+                          "code": "{{ task.code }}",
                           "name": "{{ task.name }}",
                           "title": "{{ task.title }}",
                           "description": "{{ task.description }}",
@@ -253,15 +260,25 @@
                       modalTask.style.display = "block";
 
                       // Get the clicked task card
-                      var clickedTaskCard = event.target.closest('.task-card');
-                      var taskId = clickedTaskCard.getAttribute('data-id');
+                      // var clickedTaskCard = event.target.closest('.task-card');
+                      var taskId = tid;
+
+                      console.log("tid", tid);
 
                       // Fetch the task details from the tasks object
                       var task = tasks[taskId];
 
+                      console.log(task);
+
+
                       // Set the modal content based on the clicked task card
-                      modalTask.querySelector('.modal-title').textContent = task.title;
-                      modalTask.querySelector('.modal-progress').textContent = `${task.progress}% complete`;
+                      
+
+                      // Set the modal content based on the clicked task card
+                      document.getElementById('t_h2').textContent = `${task.code} - ${task.name}`;
+                      document.getElementById('t_title').textContent = task.title;
+                      document.getElementById('progress').value = task.progress;
+                      document.getElementById('taskid').value = taskId;
 
                       // Set up event listener for the Save button
                       var updateButton = modalTask.querySelector("button[type='submit']");
@@ -292,6 +309,12 @@
                           mainContent.innerHTML = "<p>Error saving the task. Please try again.</p>";
                         });
                       });
+
+                    
+                      var ccloseButton = document.querySelector(".close-button");
+                    ccloseButton.addEventListener("click", function() {
+                      modalTask.style.display = "none";
+                    });
 
                       // Set up event listener for the Close button
                       modalTask.addEventListener("click", function(event) {
@@ -337,15 +360,15 @@
                         if (response.ok) {
                           // Close the modal and display a success message
                           modal.style.display = "none";
-                          mainContent.innerHTML = "<p>New schedule added successfully!</p>";
+                          mainContent.innerHTML = "<p>New task added successfully!</p>";
                         } else {
                           // Display an error message
-                          mainContent.innerHTML = "<p>Error saving the schedule. Please try again.</p>";
+                          mainContent.innerHTML = "<p>Error saving the task. Please try again.</p>";
                         }
                       })
                       .catch(function(error) {
                         // Display an error message
-                        mainContent.innerHTML = "<p>Error saving the schedule. Please try again.</p>";
+                        mainContent.innerHTML = "<p>Error saving the task. Please try again.</p>";
                       });
                     });
 
@@ -386,28 +409,114 @@
                     }
                 case 'quiz-bot':
                     mainContent.innerHTML = `
-                    <i class="fa fa-robot"></i>
-                    <p style="font-size: 20px" "color: #620053">Site is under construction.</p>
+                    <div style="display: flex; justify-content: center; align-items: center; height: 50vh; width: 130vh;">
+                      <div style="text-align: center;">
+                        <i class="fa fa-robot" style="font-size: 100px;"></i>
+                        <p style="font-size: 20px; color: #00000;">Site is under construction.</p>
+                      </div>
+                    </div>
                 `; 
                     trackContainer.style.display = "none";
                     break;
                 case 'your-progress':
-                    mainContent.innerHTML = `
-                    //  <h1>Student Progress Dashboard</h1>
-                    //   <div class="dashboard-container">
-                    //     <div class="dashboard-item">
-                    //       <h2>Overall Performance</h2>
-                    //       <div id="overallPerformanceChart" class="chart"></div>
-                    //     </div>
-                    //     <div class="dashboard-item">
-                    //       <h2>Subject-wise Performance</h2>
-                    //       <div id="subjectPerformanceChart" class="chart"></div>
-                    //     </div>
-                    //   </div>
-                    
-                `; 
-                    trackContainer.style.display = "none";
-                    break;
+                  mainContent.innerHTML = 
+                  `<div class="prog-cont">
+                      <h1>Student Progress Tool</h1>
+                      <p>Welcome, {{ session['name'] }}!</p>
+                      <div id="progress-visualization"></div>
+                      <div class="message" id="message"></div>
+                      <button onclick="fetchTasks()" id="motivation-button">Show</button>
+                  </div>`;
+                  document.getElementById("motivation-button").addEventListener("click", function() {
+                      fetchTasks();
+                      fetchProgress();
+                  });
+
+                  function fetchTasks() {
+                      fetch('/your-progress')
+                      .then(response => response.json())
+                      .then(data => {
+                          visualizeProgress(data.tasks);
+                          createGanttChart(data.tasks);
+                      });
+                  }
+
+                  function fetchProgress() {
+                      fetch('/process-progress')
+                      .then(response => response.json())
+                      .then(data => {
+                          d3.select("#message").selectAll("p")
+                          .data(data)
+                          .enter()
+                          .append("p")
+                          .text(d => `${d.title}: ${d.message}`);
+                      });
+                  }
+
+                  function createGanttChart(tasks) {
+                      // Set up the chart dimensions
+                      const width = 300;
+                      const height = 200;
+
+                      // Create the SVG container
+                      const svg = d3.select("#progress-visualization")
+                          .append("svg")
+                          .attr("width", width)
+                          .attr("height", height);
+
+                      // Create the tooltip element
+                      const tooltip = d3.select("body")
+                          .append("div")
+                          .attr("class", "tooltip")
+                          .style("opacity", 0);
+
+                      // Create the scales
+                      const x = d3.scaleTime()
+                          .range([0, width]);
+                      const y = d3.scaleBand()
+                          .rangeRound([0, height])
+                          .padding(0.1);
+
+                      // Set the domain for the scales
+                      const dates = tasks.map(d => new Date(d.dueDate));
+                      x.domain(d3.extent(dates));
+                      y.domain(tasks.map(d => d.taskName));
+
+                      // Create the Gantt chart bars
+                      svg.selectAll(".task-bar")
+                          .data(tasks)
+                          .enter().append("rect")
+                          .attr("class", d => `task-bar ${new Date(d.dueDate) < new Date() ? 'overdue' : ''}`)
+                          .attr("x", d => x(new Date(d.createdAt)))
+                          .attr("width", d => x(new Date(d.dueDate)) - x(new Date(d.createdAt)))
+                          .attr("y", d => y(d.taskName))
+                          .attr("height", y.bandwidth())
+                          .on("mouseover", function(event, d) {
+                              tooltip.transition()
+                              .duration(200)
+                              .style("opacity", 0.9);
+                              tooltip.html(`Task: ${d.taskName}<br>Due Date: ${d.dueDate}<br>Progress: ${d.progress}%`)
+                              .style("left", (event.pageX + 10) + "px")
+                              .style("top", (event.pageY - 28) + "px");
+                          })
+                          .on("mouseout", function(d) {
+                              tooltip.transition()
+                              .duration(500)
+                              .style("opacity", 0);
+                          });
+
+                      // Create the axes
+                      svg.append("g")
+                          .attr("class", "axis")
+                          .attr("transform", `translate(0, ${height})`)
+                          .call(d3.axisBottom(x)
+                              .tickFormat(d3.timeFormat("%b %d")));
+
+                      svg.append("g")
+                          .attr("class", "axis")
+                          .call(d3.axisLeft(y));
+                  }
+                  break;
                 case 'settings':
                     mainContent.innerHTML = `
                     <div class="track-container">
@@ -429,8 +538,13 @@
                     trackContainer.style.display = "none";
                     break;
                 default:
-                    mainContent.innerHTML = `<i class="fa fa-robot"></i>
-                    <p style="font-size: 20px" "color: #620053">Site is under construction.</p> `;
+                    mainContent.innerHTML = `
+                    <div style="display: flex; justify-content: center; align-items: center; height: 50vh; width: 130vh;">
+                      <div style="text-align: center;">
+                        <i class="fa fa-robot" style="font-size: 100px;"></i>
+                        <p style="font-size: 20px; color: #00000;">Site is under construction.</p>
+                      </div>
+                    </div>`
                     trackContainer.style.display = "none";
             }
           }
