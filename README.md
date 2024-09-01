@@ -38,14 +38,16 @@ To get started with the LearnFlow project, follow these steps:
    ```bash
    pip install -r requirements.txt
 
+
 ## Usage 
 
-To run the application, use the following command:
+To run the application, follow these steps:
 
-```bash
-python app.py
+1. Use the following command:
+    ```bash
+    python app.py
 
-Open your web browser and go to http://127.0.0.1:5000 to access the application.
+2. Open your web browser and go to http://127.0.0.1:5000 to access the application.
 
 ## Contact
 If you have any questions or need further assistance, please don't hesitate to reach out to me at:
