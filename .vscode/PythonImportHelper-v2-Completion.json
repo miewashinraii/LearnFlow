@@ -297,11 +297,70 @@
         "documentation": {}
     },
     {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "tensorflow",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tensorflow",
+        "description": "tensorflow",
+        "detail": "tensorflow",
+        "documentation": {}
+    },
+    {
+        "label": "keras",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "keras",
+        "description": "keras",
+        "detail": "keras",
+        "documentation": {}
+    },
+    {
+        "label": "Sequential",
+        "importPath": "keras.models",
+        "description": "keras.models",
+        "isExtraImport": true,
+        "detail": "keras.models",
+        "documentation": {}
+    },
+    {
+        "label": "Dense",
+        "importPath": "keras.layers",
+        "description": "keras.layers",
+        "isExtraImport": true,
+        "detail": "keras.layers",
+        "documentation": {}
+    },
+    {
+        "label": "LinearRegression",
+        "importPath": "sklearn.linear_model",
+        "description": "sklearn.linear_model",
+        "isExtraImport": true,
+        "detail": "sklearn.linear_model",
+        "documentation": {}
+    },
+    {
+        "label": "MinMaxScaler",
+        "importPath": "sklearn.preprocessing",
+        "description": "sklearn.preprocessing",
+        "isExtraImport": true,
+        "detail": "sklearn.preprocessing",
+        "documentation": {}
+    },
+    {
         "label": "login",
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def login():\n# Output message if something goes wrong...\n    print(\"DAHH MASSUUUUUUKKKK niiiIII!@3\")\n    # Check if \"email\" and \"password\" POST requests exist (user submitted form)\n    # if request.method == 'POST' and 'email' in request.form and 'password' in request.form:\n    if request.method == 'POST':\n        # Create variables for easy access\n        email = request.form['email']\n        password = request.form['password']\n        print(\"dapat masuk db dah ni\")",
+        "peekOfCode": "def login():\n    populateReminder()\n# Output message if something goes wrong...\n    print(\"Welcome to LearnFlow\")\n    # Check if \"email\" and \"password\" POST requests exist (user submitted form)\n    # if request.method == 'POST' and 'email' in request.form and 'password' in request.form:\n    if request.method == 'POST':\n        # Create variables for easy access\n        email = request.form['email']\n        password = request.form['password']",
         "detail": "app",
         "documentation": {}
     },
@@ -328,7 +387,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def learnflow():\n    if 'name' not in session:\n        return redirect(url_for('login'))\n    cursor = mysql.connection.cursor()\n    cursor.execute(\"SELECT phone, email FROM my_table WHERE name = %s\", (session['name'],))\n    user_info = cursor.fetchone()\n    has_phone = user_info[0] is not None\n    # Fetch the options for the code and name dropdowns\n    cursor.execute(\"SELECT code FROM courses\")\n    course_options = [row[0] for row in cursor.fetchall()]",
+        "peekOfCode": "def learnflow():\n    email = session.get('email')\n    name = session.get('name')\n    print(\"testing for the email\")\n    if 'name' not in session:\n        return redirect(url_for('login'))\n    cursor = mysql.connection.cursor()\n    cursor.execute(\"SELECT phone, email FROM my_table WHERE name = %s\", (session['name'],))\n    user_info = cursor.fetchone()\n    has_phone = user_info[0] is not None",
         "detail": "app",
         "documentation": {}
     },
@@ -337,7 +396,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def send_email_notification(recipient_email, subject, body):\n    msg = Message(\n        subject=subject,\n        recipients=[recipient_email]\n    )\n    msg.body = body\n    mail.send(msg)\n# def send_sms_notification(recipient_phone, message):\n#     print(\"INI NUMBER I\")\n#     print(recipient_phone)",
+        "peekOfCode": "def send_email_notification(recipient_email, subject, body):\n    msg = Message(\n        subject=subject,\n        recipients=[recipient_email]\n    )\n    msg.body = body\n    mail.send(msg)\n    print(\"Sent a daily notification\")\n# def send_sms_notification(recipient_phone, message):\n#     print(\"INI NUMBER I\")",
         "detail": "app",
         "documentation": {}
     },
@@ -355,7 +414,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def get_course_data(code):\n    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)\n    cursor.execute(\"SELECT code, name FROM courses\")\n    courses = cursor.fetchall()\n    course_codes = [course['code'] for course in courses]\n    course_names = [course['name'] for course in courses]\n    return course_codes, course_names\n@app.route('/update-task', methods=['POST'])\ndef update_task():\n    data = request.get_json()",
+        "peekOfCode": "def get_course_data(code):\n    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)\n    cursor.execute(\"SELECT code, name FROM courses\")\n    courses = cursor.fetchall()\n    course_codes = [course['code'] for course in courses]\n    course_names = [course['name'] for course in courses]\n    return course_codes, course_names\n@app.route('/update-task/<int:task_id>', methods=['POST'])\ndef update_task(task_id):\n    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)",
         "detail": "app",
         "documentation": {}
     },
@@ -364,7 +423,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def update_task():\n    data = request.get_json()\n    progress = data.get('progress')\n    task_id = data.get('taskId')\n    if not progress or not task_id:\n        return jsonify({'error': 'Missing required parameters'}), 400\n    try:\n        with mysql.connection.cursor() as cursor:\n            cursor.execute(\"SELECT id, title, name, code, description, due_date FROM tasks WHERE id = %s\", (task_id,))\n            task = cursor.fetchone()",
+        "peekOfCode": "def update_task(task_id):\n    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)\n    cursor.execute(\"SELECT * FROM tasks WHERE id = %s\", (task_id,))\n    task = cursor.fetchone()\n    if task is None:\n        flash('Task not found', 'error')\n        return redirect(url_for('learnflow'))\n    data = request.form  # Use form data for POST request\n    if 'progress' not in data:\n        flash('Invalid input', 'error')",
         "detail": "app",
         "documentation": {}
     },
@@ -387,6 +446,33 @@
         "documentation": {}
     },
     {
+        "label": "your_progress",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def your_progress():\n    try:\n        # Connect to MySQL database\n        with mysql.connection.cursor(MySQLdb.cursors.DictCursor) as cursor:\n            # Query the tasks table\n            student_id = session['student_id']\n            cursor.execute(\"SELECT id, title, code, name, progress, created_at, due_date FROM tasks WHERE student_id = %s\", (student_id,))\n            tasks = cursor.fetchall()\n            tasks_data = []\n            # # Convert the results to a list of dictionaries",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "tensor_model",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def tensor_model(progress):\n    model = tf.keras.Sequential([\n        tf.keras.layers.Dense(units=1, input_shape=[1])\n    ])\n    model.compile(optimizer='sgd', loss='mean_squared_error')\n    xs = np.array([0, 50, 100], dtype=float)\n    ys = np.array([0, 50, 100], dtype=float)\n    model.fit(xs, ys, epochs=500, verbose=0)\n    prediction = model.predict([progress])[0][0]\n    return prediction",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "process_progress",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def process_progress():\n    cursor = mysql.connection.cursor()\n    cursor.execute(\"SELECT title, progress FROM tasks WHERE student_id = %s\", (session['student_id'],))\n    tasks = cursor.fetchall()\n    messages = []\n    for title, progress in tasks:\n        progress = int(progress)\n        if progress >= 80:\n            messages.append({\"title\": title, \"message\": \"You are doing great! Keep it up, you're almost there\"})\n        elif 50 <= progress < 80:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
         "label": "course_detail",
         "kind": 2,
         "importPath": "app",
@@ -401,6 +487,15 @@
         "importPath": "app",
         "description": "app",
         "peekOfCode": "def task1():\n    # Fetch the details of the specific course\n    course_code = request.args.get('course_code')\n    if course_code:\n        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)\n        cursor.execute(\"SELECT * FROM courses WHERE code = %s\", (course_code,))\n        course = cursor.fetchone()\n        print(\"here's the selected course\")\n        print(course)\n        if course:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "populateReminder",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def populateReminder():\n    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)\n    cursor.execute(\"SELECT t.id, t.title, t.code, t.due_date, t.name, m.email, m.name as m_name FROM my_database.tasks t JOIN my_database.my_table m ON t.student_id = m.student_id\")\n    reminders = cursor.fetchall()\n    today = date.today()\n    student_tasks = {}\n    for reminder in reminders:\n        task_id = reminder['id']\n        task_title = reminder['title']\n        task_due_date = reminder['due_date']",
         "detail": "app",
         "documentation": {}
     },
@@ -463,7 +558,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "mail = Mail(app)\n# Intialize MySQL\nmysql = MySQL(app)\n@app.route('/', methods=['GET', 'POST'])\ndef login():\n# Output message if something goes wrong...\n    print(\"DAHH MASSUUUUUUKKKK niiiIII!@3\")\n    # Check if \"email\" and \"password\" POST requests exist (user submitted form)\n    # if request.method == 'POST' and 'email' in request.form and 'password' in request.form:\n    if request.method == 'POST':",
+        "peekOfCode": "mail = Mail(app)\n# Intialize MySQL\nmysql = MySQL(app)\n# def check_due_tasks():\n#     with app.app_context():\n#         cur = mysql.connection.cursor()\n#         student_id = session['student_id']  # Assuming the student ID is stored in the session\n#         cur.execute(\"SELECT * FROM tasks WHERE student_id = %s\", (student_id,))\n#         tasks = cur.fetchall()\n#         for task in tasks:",
         "detail": "app",
         "documentation": {}
     },
@@ -472,7 +567,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "mysql = MySQL(app)\n@app.route('/', methods=['GET', 'POST'])\ndef login():\n# Output message if something goes wrong...\n    print(\"DAHH MASSUUUUUUKKKK niiiIII!@3\")\n    # Check if \"email\" and \"password\" POST requests exist (user submitted form)\n    # if request.method == 'POST' and 'email' in request.form and 'password' in request.form:\n    if request.method == 'POST':\n        # Create variables for easy access\n        email = request.form['email']",
+        "peekOfCode": "mysql = MySQL(app)\n# def check_due_tasks():\n#     with app.app_context():\n#         cur = mysql.connection.cursor()\n#         student_id = session['student_id']  # Assuming the student ID is stored in the session\n#         cur.execute(\"SELECT * FROM tasks WHERE student_id = %s\", (student_id,))\n#         tasks = cur.fetchall()\n#         for task in tasks:\n#             task_id, title, name, due_date, student_id = task\n#             user_email = get_user_email(student_id)",
         "detail": "app",
         "documentation": {}
     },
